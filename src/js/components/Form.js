@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import './Form.css';
 
 class Form extends Component {
   constructor() {
@@ -24,13 +25,13 @@ class Form extends Component {
   render() {
     return (
       <>
-      <form>
+      <form className="form">
         <input
           type="text"
           onChange={this.handleChange}
         />
       </form>
-      <div>
+      <div className="form-value">
         {this.state.value}
       </div>
       </>
