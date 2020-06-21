@@ -1,20 +1,9 @@
 import React from 'react';
 import ReactDOM, { render } from "react-dom";
 import './index.css';
-
+import SearchBox from './components/SearchBox';
 import alc from './JobIcons/alc.png';
 
-function Button(props) {
-  return(
-    <button onClick={() => getCharaData(props.lodestoneId, props.setCharacterData)}>
-      押してね
-    </button>
-  );
-}
-
-function getCharaData(lodestoneId, setCharacterData){ 
-  fetch(`https://xivapi.com/character/${lodestoneId}?data=CJ`).then(response => response.json()).then(jsonData => {setCharacterData(jsonData);});
-}
 
 class Profile extends React.Component {
   constructor(){
@@ -25,35 +14,35 @@ class Profile extends React.Component {
         name: "キャラクター名",
         imgSrc: "",
         job: [
-          {jobName: "pld", ClassID: 1,  Level: "-"},
-          {jobName: "war", ClassID: 3,  Level: "-"},
-          {jobName: "drk", ClassID: 32, Level: "-"},
-          {jobName: "gnb", ClassID: 37, Level: "-"},
-          {jobName: "whm", ClassID: 2,  Level: "-"},
-          {jobName: "sch", ClassID: 4,  Level: "-"},
-          {jobName: "ast", ClassID: 29, Level: "-"},
-          {jobName: "mnk", ClassID: 34, Level: "-"},
-          {jobName: "drg", ClassID: 6,  Level: "-"},
-          {jobName: "nin", ClassID: 26, Level: "-"},
-          {jobName: "sam", ClassID: 33, Level: "-"},
-          {jobName: "brd", ClassID: 5,  Level: "-"},
-          {jobName: "mcn", ClassID: 31, Level: "-"},
-          {jobName: "dnc", ClassID: 38, Level: "-"},
-          {jobName: "blm", ClassID: 7,  Level: "-"},
-          {jobName: "smn", ClassID: 26, Level: "-"},
-          {jobName: "rdm", ClassID: 35, Level: "-"},
-          {jobName: "blu", ClassID: 36, Level: "-"},
-          {jobName: "crp", ClassID: 8,  Level: "-"},
-          {jobName: "bsm", ClassID: 9,  Level: "-"},
-          {jobName: "arm", ClassID: 10, Level: "-"},
-          {jobName: "gsm", ClassID: 11, Level: "-"},
-          {jobName: "ltw", ClassID: 12, Level: "-"},
-          {jobName: "wvr", ClassID: 13, Level: "-"},
-          {jobName: "alc", ClassID: 14, Level: "-"},
-          {jobName: "cul", ClassID: 15, Level: "-"},
-          {jobName: "min", ClassID: 16, Level: "-"},
-          {jobName: "btn", ClassID: 17, Level: "-"},
-          {jobName: "fsh", ClassID: 18, Level: "-"}, 
+          {jobName: "pld", JobID: 19, Level: "-"},
+          {jobName: "war", JobID: 21, Level: "-"},
+          {jobName: "drk", JobID: 32, Level: "-"},
+          {jobName: "gnb", JobID: 37, Level: "-"},
+          {jobName: "whm", JobID: 24, Level: "-"},
+          {jobName: "sch", JobID: 28, Level: "-"},
+          {jobName: "ast", JobID: 33, Level: "-"},
+          {jobName: "mnk", JobID: 20, Level: "-"},
+          {jobName: "drg", JobID: 22, Level: "-"},
+          {jobName: "nin", JobID: 30, Level: "-"},
+          {jobName: "sam", JobID: 34, Level: "-"},
+          {jobName: "brd", JobID: 23, Level: "-"},
+          {jobName: "mcn", JobID: 31, Level: "-"},
+          {jobName: "dnc", JobID: 38, Level: "-"},
+          {jobName: "blm", JobID: 25, Level: "-"},
+          {jobName: "smn", JobID: 27, Level: "-"},
+          {jobName: "rdm", JobID: 35, Level: "-"},
+          {jobName: "blu", JobID: 36, Level: "-"},
+          {jobName: "crp", JobID: 8,  Level: "-"},
+          {jobName: "bsm", JobID: 9,  Level: "-"},
+          {jobName: "arm", JobID: 10, Level: "-"},
+          {jobName: "gsm", JobID: 11, Level: "-"},
+          {jobName: "ltw", JobID: 12, Level: "-"},
+          {jobName: "wvr", JobID: 13, Level: "-"},
+          {jobName: "alc", JobID: 14, Level: "-"},
+          {jobName: "cul", JobID: 15, Level: "-"},
+          {jobName: "min", JobID: 16, Level: "-"},
+          {jobName: "btn", JobID: 17, Level: "-"},
+          {jobName: "fsh", JobID: 18, Level: "-"}, 
         ]
       }
     };
@@ -69,7 +58,7 @@ class Profile extends React.Component {
   setCharacterData(data){
     const ClassJobs = data.Character.ClassJobs;
     const jobs = ClassJobs.map((job) => {
-      let jobs = {ClassID: job.ClassID,
+      let jobs = {JobID: job.JobID,
                   Level: job.Level};
       return jobs;
     });
@@ -78,22 +67,12 @@ class Profile extends React.Component {
       imgSrc: data.Character.Portrait,
       job: jobs
     }});
-    console.log(this.state.characterData.job);
   }
 
   render() {
     return (
       <div>
-        <div>
-        <label>
-          Lodestone ID：
-          <input type="text"
-            value={this.state.lodestoneId}
-            onChange={this.handleChange} 
-          />
-        </label>
-        <Button lodestoneId={this.state.lodestoneId} setCharacterData={this.setCharacterData} />
-        </div>
+        <SearchBox lodestoneId={this.state.lodestoneId} handleChange={this.handleChange} setCharacterData={this.setCharacterData} />
         <div>{this.state.characterData.name}</div>
         <div>
           {this.state.characterData.imgSrc ? 
@@ -102,7 +81,7 @@ class Profile extends React.Component {
         </div>
         <div className="job">
           <p>ジョブレベル</p>
-          <JobList job={this.state.characterData.job}  key={this.state.characterData.job.ClassID}/>
+          <JobList job={this.state.characterData.job} />
         </div>
       </div>
     );
@@ -114,7 +93,7 @@ function JobList(props){
   const th = props.job.map((job, i) => {
     if(i <= 6) {
       return (
-      <li key={job.jobName}>
+      <li key={job.JobID}>
         <img src={alc} />
         <div>{job.Level}</div>
       </li>
@@ -125,7 +104,7 @@ function JobList(props){
     if(i < 18) {
       if(i > 6){
         return (
-        <li key={job.jobName}>
+        <li key={job.JobID}>
           <img src={alc} />
           <div>{job.Level}</div>
         </li>
@@ -136,7 +115,7 @@ function JobList(props){
   const gc = props.job.map((job, i) => {
     if(i >= 18) {
       return (
-      <li key={job.jobName}>
+      <li key={job.JobID}>
         <img src={alc} />
         <div>{job.Level}</div>
       </li>
