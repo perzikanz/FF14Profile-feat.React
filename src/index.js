@@ -33,15 +33,24 @@ import min from './JobIcons/min.png';
 import btn from './JobIcons/btn.png';
 import fsh from './JobIcons/fsh.png';
 
+import gla from './JobIcons/gla.png';
+import mrd from './JobIcons/mrd.png';
+import cnj from './JobIcons/cnj.png';
+import pgl from './JobIcons/pgl.png';
+import lnc from './JobIcons/lnc.png';
+import rog from './JobIcons/rog.png';
+import arc from './JobIcons/arc.png';
+import thm from './JobIcons/thm.png';
+import acn from './JobIcons/acn.png';
 
 class Profile extends React.Component {
   constructor(){
     super();
     this.state = {
-      lodestoneId: "", // 22728375
+      lodestoneId: "", // 22728375 / 22657106
       characterData: {
         name: "キャラクター名",
-        imgSrc: "",
+        charaImgSrc: "",
         job: [
           {jobName: "pld", JobID: 19, Level: "-", img: pld},
           {jobName: "war", JobID: 21, Level: "-", img: war},
@@ -72,7 +81,18 @@ class Profile extends React.Component {
           {jobName: "min", JobID: 16, Level: "-", img: min},
           {jobName: "btn", JobID: 17, Level: "-", img: btn},
           {jobName: "fsh", JobID: 18, Level: "-", img: fsh},
-        ]
+        ],
+        class: [
+          {className: "gla", classID: 1,  img: gla},
+          {className: "mrd", classID: 3,  img: mrd},
+          {className: "cnj", classID: 6,  img: cnj},
+          {className: "pgl", classID: 2,  img: pgl},
+          {className: "lnc", classID: 4,  img: lnc},
+          {className: "rog", classID: 29, img: rog},
+          {className: "arc", classID: 5,  img: arc},
+          {className: "thm", classID: 7,  img: thm},
+          {className: "acn", classID: 26, img: acn},
+        ],
       }
     };
 
@@ -87,24 +107,38 @@ class Profile extends React.Component {
   setCharacterData(data){
     const ClassJobs = data.Character.ClassJobs;
     const currentJobs = this.state.characterData.job;
+    const currentClass = this.state.characterData.class;
 
-    // Levelだけを更新した新しい配列
+    // Levelだけを更新した新しいJobデータ
     let nextJob = currentJobs.map((currentJob) => {
-      const targetJobID = currentJob.JobID; // 目的のデータのJobID
-      // 取ってきたデータの中から、目的のデータ1つだけを取り出す
+      const targetJobID = currentJob.JobID; // 目的のジョブのJobID
+      // 取ってきたデータの中から、目的のjobのデータだけを取り出す
       const targetJob = ClassJobs.find((fetchedJob) => {
         return fetchedJob.JobID === targetJobID;
       })
+      const unID = targetJob.UnlockedState.ID;
+      let imgSrc = currentJob.img;
+      if(unID === null){
+        imgSrc = currentJob.img;
+      }else if(unID < 8 || unID === 29 || unID === 26){
+        const targetClass = currentClass.find((classes) => {
+          return classes.classID === unID;
+        })
+        imgSrc = targetClass.img;
+      }else{
+        imgSrc = currentJob.img;
+      };
       return {
         jobName: currentJob.jobName,
         JobID: currentJob.JobID,
         Level: targetJob.Level,
-        img: currentJob.img
+        img: imgSrc
       };
     });
+
     this.setState({characterData: {
       name: data.Character.Name,
-      imgSrc: data.Character.Portrait,
+      charaImgSrc: data.Character.Portrait,
       job: nextJob
     }});
   }
@@ -115,8 +149,8 @@ class Profile extends React.Component {
         <SearchBox lodestoneId={this.state.lodestoneId} handleChange={this.handleChange} setCharacterData={this.setCharacterData} />
         <div>{this.state.characterData.name}</div>
         <div>
-          {this.state.characterData.imgSrc ? 
-          <img className="profileImage"　src={this.state.characterData.imgSrc} alt="プロフィール画像" />: 
+          {this.state.characterData.charaImgSrc ? 
+          <img className="profileImage"　src={this.state.characterData.charaImgSrc} alt="プロフィール画像" />: 
           <span>ここに画像が出ます</span>}
         </div>
         <div className="job">
