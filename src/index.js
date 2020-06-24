@@ -98,6 +98,11 @@ class Profile extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.setCharacterData = this.setCharacterData.bind(this);
+    this.getCharacterData = this.getCharacterData.bind(this);
+  }
+
+  componentDidMount() {
+
   }
 
   handleChange(event) {
@@ -139,10 +144,14 @@ class Profile extends React.Component {
     }});
   }
 
+  getCharacterData(lodestoneId){ 
+    fetch(`https://xivapi.com/character/${lodestoneId}?data=CJ`).then(response => response.json()).then(jsonData => {this.setCharacterData(jsonData);});
+  }
+
   render() {
     return (
       <div>
-        <SearchBox lodestoneId={this.state.lodestoneId} handleChange={this.handleChange} setCharacterData={this.setCharacterData} />
+        <SearchBox lodestoneId={this.state.lodestoneId} handleChange={this.handleChange} getCharacterData={this.getCharacterData} />
         <div>{this.state.characterData.name}</div>
         <div>
           {this.state.characterData.charaImgSrc ? 
@@ -157,6 +166,7 @@ class Profile extends React.Component {
     );
   }
 }
+
 
 
 function JobList(props){
