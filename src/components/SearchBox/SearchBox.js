@@ -3,7 +3,10 @@ import './SearchBox.css';
 
 function Button(props) {
   return(
-    <button onClick={() => props.getCharacterData(props.lodestoneId)}>
+    <button onClick={() => {
+      props.startReloading();
+      props.getCharacterData(props.lodestoneId);
+      }}>
       押してね
     </button>
   );
@@ -25,7 +28,7 @@ export class SearchBox extends Component {
             onChange={this.props.handleChange} 
           />
         </label>
-        <Button lodestoneId={this.props.lodestoneId} getCharacterData={this.props.getCharacterData} />
+        <Button lodestoneId={this.props.lodestoneId} getCharacterData={this.props.getCharacterData} startReloading={this.props.startReloading}/>
       </div>
     );
   }
