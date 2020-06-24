@@ -47,7 +47,7 @@ class Profile extends React.Component {
   constructor(){
     super();
     this.state = {
-      lodestoneId: "", // 22728375 / 22657106
+      lodestoneId: "22657106", // 22728375 / 
       characterData: {
         name: "キャラクター名",
         charaImgSrc: "",
@@ -102,7 +102,7 @@ class Profile extends React.Component {
   }
 
   componentDidMount() {
-
+    this.getCharacterData(this.state.lodestoneId);
   }
 
   handleChange(event) {
