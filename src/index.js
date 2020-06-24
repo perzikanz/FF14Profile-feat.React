@@ -93,7 +93,8 @@ class Profile extends React.Component {
           {className: "thm", classID: 7,  img: thm},
           {className: "acn", classID: 26, img: acn},
         ],
-      }
+      },
+      isFirstLoading: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -137,11 +138,14 @@ class Profile extends React.Component {
       };
     });
 
-    this.setState({characterData: {
+    this.setState({
+      characterData: {
       name: data.Character.Name,
       charaImgSrc: data.Character.Portrait,
       job: nextJob
-    }});
+      },
+      isFirstLoading: false,
+    });
   }
 
   getCharacterData(lodestoneId){ 
@@ -149,6 +153,11 @@ class Profile extends React.Component {
   }
 
   render() {
+    if(this.state.isFirstLoading) {
+      return(
+        <div>ロード中...</div>
+      );
+    }
     return (
       <div>
         <SearchBox lodestoneId={this.state.lodestoneId} handleChange={this.handleChange} getCharacterData={this.getCharacterData} />
