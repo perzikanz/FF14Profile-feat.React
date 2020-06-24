@@ -118,16 +118,12 @@ class Profile extends React.Component {
       })
       const unID = targetJob.UnlockedState.ID;
       let imgSrc = currentJob.img;
-      if(unID === null){
-        imgSrc = currentJob.img;
-      }else if(unID < 8 || unID === 29 || unID === 26){
+      if(unID !== null && (unID < 8 || unID === 29 || unID === 26)){
         const targetClass = currentClass.find((classes) => {
           return classes.classID === unID;
         })
         imgSrc = targetClass.img;
-      }else{
-        imgSrc = currentJob.img;
-      };
+      }
       return {
         jobName: currentJob.jobName,
         JobID: currentJob.JobID,
