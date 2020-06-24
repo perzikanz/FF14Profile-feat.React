@@ -3,7 +3,10 @@ import './SearchBox.css';
 
 function Button(props) {
   return(
-    <button onClick={() => getCharaData(props.lodestoneId, props.setCharacterData)}>
+    <button onClick={() => {
+      props.startReloading();
+      props.getCharacterData(props.lodestoneId);
+      }}>
       押してね
     </button>
   );
@@ -25,14 +28,12 @@ export class SearchBox extends Component {
             onChange={this.props.handleChange} 
           />
         </label>
-        <Button lodestoneId={this.props.lodestoneId} setCharacterData={this.props.setCharacterData} />
+        <Button lodestoneId={this.props.lodestoneId} getCharacterData={this.props.getCharacterData} startReloading={this.props.startReloading}/>
       </div>
     );
   }
 }
 
-function getCharaData(lodestoneId, setCharacterData){ 
-  fetch(`https://xivapi.com/character/${lodestoneId}?data=CJ`).then(response => response.json()).then(jsonData => {setCharacterData(jsonData);});
-}
+
 
 // export default SearchBox;

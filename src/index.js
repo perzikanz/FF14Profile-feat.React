@@ -47,7 +47,7 @@ class Profile extends React.Component {
   constructor(){
     super();
     this.state = {
-      lodestoneId: "", // 22728375 / 22657106
+      lodestoneId: "22657106", // 22728375 / 
       characterData: {
         name: "キャラクター名",
         charaImgSrc: "",
@@ -93,18 +93,26 @@ class Profile extends React.Component {
           {className: "thm", classID: 7,  img: thm},
           {className: "acn", classID: 26, img: acn},
         ],
-      }
+      },
+      isFirstLoading: true,
+      isReloading: false,
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.setCharacterData = this.setCharacterData.bind(this);
+    this.getCharacterData = this.getCharacterData.bind(this);
+    this.startReloading = this.startReloading.bind(this);
+  }
+
+  componentDidMount() {
+    this.getCharacterData(this.state.lodestoneId);
   }
 
   handleChange(event) {
     this.setState({lodestoneId: event.target.value});
   }
 
-  setCharacterData(data){
+  setCharacterData(data) {
     const ClassJobs = data.Character.ClassJobs;
     const currentJobs = this.state.characterData.job;
     const currentClass = this.state.characterData.class;
@@ -132,31 +140,53 @@ class Profile extends React.Component {
       };
     });
 
-    this.setState({characterData: {
+    this.setState({
+      characterData: {
       name: data.Character.Name,
       charaImgSrc: data.Character.Portrait,
       job: nextJob
-    }});
+      },
+      isFirstLoading: false,
+      isReloading: false,
+    });
+  }
+
+  getCharacterData(lodestoneId) {
+    fetch(`https://xivapi.com/character/${lodestoneId}?data=CJ`).then(response => response.json()).then(jsonData => {this.setCharacterData(jsonData);});
+  }
+
+  startReloading(){
+    this.setState({isReloading: true});
   }
 
   render() {
+    if(this.state.isFirstLoading) {
+      return(
+        <div>ロード中...</div>
+      );
+    }
     return (
       <div>
-        <SearchBox lodestoneId={this.state.lodestoneId} handleChange={this.handleChange} setCharacterData={this.setCharacterData} />
-        <div>{this.state.characterData.name}</div>
-        <div>
-          {this.state.characterData.charaImgSrc ? 
-          <img className="profileImage"　src={this.state.characterData.charaImgSrc} alt="プロフィール画像" />: 
-          <span>ここに画像が出ます</span>}
-        </div>
-        <div className="job">
-          <p>ジョブレベル</p>
-          <JobList job={this.state.characterData.job} />
-        </div>
+        <SearchBox lodestoneId={this.state.lodestoneId} handleChange={this.handleChange} getCharacterData={this.getCharacterData} startReloading={this.startReloading}/>
+        {this.state.isReloading ? <div>リロード中...</div>:
+          <>
+            <div>{this.state.characterData.name}</div>
+            <div>
+              {this.state.characterData.charaImgSrc ? 
+              <img className="profileImage"　src={this.state.characterData.charaImgSrc} alt="プロフィール画像" />: 
+              <span>ここに画像が出ます</span>}
+            </div>
+            <div className="job">
+              <p>ジョブレベル</p>
+              <JobList job={this.state.characterData.job} />
+            </div>
+          </>
+        }
       </div>
     );
   }
 }
+
 
 
 function JobList(props){
