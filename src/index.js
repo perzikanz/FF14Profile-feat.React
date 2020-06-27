@@ -52,47 +52,47 @@ class Profile extends React.Component {
         name: 'キャラクター名',
         charaImgSrc: '',
         job: [
-          {jobName: 'pld', JobID: 19, Level: '-', img: pld},
-          {jobName: 'war', JobID: 21, Level: '-', img: war},
-          {jobName: 'drk', JobID: 32, Level: '-', img: drk},
-          {jobName: 'gnb', JobID: 37, Level: '-', img: gnb},
-          {jobName: 'whm', JobID: 24, Level: '-', img: whm},
-          {jobName: 'sch', JobID: 28, Level: '-', img: sch},
-          {jobName: 'ast', JobID: 33, Level: '-', img: ast},
-          {jobName: 'mnk', JobID: 20, Level: '-', img: mnk},
-          {jobName: 'drg', JobID: 22, Level: '-', img: drg},
-          {jobName: 'nin', JobID: 30, Level: '-', img: nin},
-          {jobName: 'sam', JobID: 34, Level: '-', img: sam},
-          {jobName: 'brd', JobID: 23, Level: '-', img: brd},
-          {jobName: 'mcn', JobID: 31, Level: '-', img: mcn},
-          {jobName: 'dnc', JobID: 38, Level: '-', img: dnc},
-          {jobName: 'blm', JobID: 25, Level: '-', img: blm},
-          {jobName: 'smn', JobID: 27, Level: '-', img: smn},
-          {jobName: 'rdm', JobID: 35, Level: '-', img: rdm},
-          {jobName: 'blu', JobID: 36, Level: '-', img: blu},
-          {jobName: 'crp', JobID: 8,  Level: '-', img: crp},
-          {jobName: 'bsm', JobID: 9,  Level: '-', img: bsm},
-          {jobName: 'arm', JobID: 10, Level: '-', img: arm},
-          {jobName: 'gsm', JobID: 11, Level: '-', img: gsm},
-          {jobName: 'ltw', JobID: 12, Level: '-', img: ltw},
-          {jobName: 'wvr', JobID: 13, Level: '-', img: wvr},
-          {jobName: 'alc', JobID: 14, Level: '-', img: alc},
-          {jobName: 'cul', JobID: 15, Level: '-', img: cul},
-          {jobName: 'min', JobID: 16, Level: '-', img: min},
-          {jobName: 'btn', JobID: 17, Level: '-', img: btn},
-          {jobName: 'fsh', JobID: 18, Level: '-', img: fsh},
+          { jobName: 'pld', JobID: 19, Level: '-', img: pld },
+          { jobName: 'war', JobID: 21, Level: '-', img: war },
+          { jobName: 'drk', JobID: 32, Level: '-', img: drk },
+          { jobName: 'gnb', JobID: 37, Level: '-', img: gnb },
+          { jobName: 'whm', JobID: 24, Level: '-', img: whm },
+          { jobName: 'sch', JobID: 28, Level: '-', img: sch },
+          { jobName: 'ast', JobID: 33, Level: '-', img: ast },
+          { jobName: 'mnk', JobID: 20, Level: '-', img: mnk },
+          { jobName: 'drg', JobID: 22, Level: '-', img: drg },
+          { jobName: 'nin', JobID: 30, Level: '-', img: nin },
+          { jobName: 'sam', JobID: 34, Level: '-', img: sam },
+          { jobName: 'brd', JobID: 23, Level: '-', img: brd },
+          { jobName: 'mcn', JobID: 31, Level: '-', img: mcn },
+          { jobName: 'dnc', JobID: 38, Level: '-', img: dnc },
+          { jobName: 'blm', JobID: 25, Level: '-', img: blm },
+          { jobName: 'smn', JobID: 27, Level: '-', img: smn },
+          { jobName: 'rdm', JobID: 35, Level: '-', img: rdm },
+          { jobName: 'blu', JobID: 36, Level: '-', img: blu },
+          { jobName: 'crp', JobID: 8, Level: '-', img: crp },
+          { jobName: 'bsm', JobID: 9, Level: '-', img: bsm },
+          { jobName: 'arm', JobID: 10, Level: '-', img: arm },
+          { jobName: 'gsm', JobID: 11, Level: '-', img: gsm },
+          { jobName: 'ltw', JobID: 12, Level: '-', img: ltw },
+          { jobName: 'wvr', JobID: 13, Level: '-', img: wvr },
+          { jobName: 'alc', JobID: 14, Level: '-', img: alc },
+          { jobName: 'cul', JobID: 15, Level: '-', img: cul },
+          { jobName: 'min', JobID: 16, Level: '-', img: min },
+          { jobName: 'btn', JobID: 17, Level: '-', img: btn },
+          { jobName: 'fsh', JobID: 18, Level: '-', img: fsh },
         ],
       },
       class: [
-        {className: 'gla', classID: 1,  img: gla},
-        {className: 'mrd', classID: 3,  img: mrd},
-        {className: 'cnj', classID: 6,  img: cnj},
-        {className: 'pgl', classID: 2,  img: pgl},
-        {className: 'lnc', classID: 4,  img: lnc},
-        {className: 'rog', classID: 29, img: rog},
-        {className: 'arc', classID: 5,  img: arc},
-        {className: 'thm', classID: 7,  img: thm},
-        {className: 'acn', classID: 26, img: acn},
+        { className: 'gla', classID: 1, img: gla },
+        { className: 'mrd', classID: 3, img: mrd },
+        { className: 'cnj', classID: 6, img: cnj },
+        { className: 'pgl', classID: 2, img: pgl },
+        { className: 'lnc', classID: 4, img: lnc },
+        { className: 'rog', classID: 29, img: rog },
+        { className: 'arc', classID: 5, img: arc },
+        { className: 'thm', classID: 7, img: thm },
+        { className: 'acn', classID: 26, img: acn },
       ],
       isFirstLoading: true,
       isReloading: false,
@@ -109,7 +109,7 @@ class Profile extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({lodestoneId: event.target.value});
+    this.setState({ lodestoneId: event.target.value });
   }
 
   setCharacterData(data) {
@@ -123,13 +123,13 @@ class Profile extends React.Component {
       // 取ってきたデータの中から、目的のjobのデータだけを取り出す
       const targetJob = ClassJobs.find((fetchedJob) => {
         return fetchedJob.JobID === targetJobID;
-      })
+      });
       const unID = targetJob.UnlockedState.ID;
       let imgSrc = currentJob.img;
-      if(unID !== null && (unID < 8 || unID === 29 || unID === 26)){
+      if (unID !== null && (unID < 8 || unID === 29 || unID === 26)) {
         const targetClass = currentClass.find((classes) => {
           return classes.classID === unID;
-        })
+        });
         imgSrc = targetClass.img;
       }
       return {
@@ -141,9 +141,9 @@ class Profile extends React.Component {
 
     this.setState({
       characterData: {
-      name: data.Character.Name,
-      charaImgSrc: data.Character.Portrait,
-      job: currentJobs.concat([nextJob]),
+        name: data.Character.Name,
+        charaImgSrc: data.Character.Portrait,
+        job: currentJobs.concat([nextJob]),
       },
       isFirstLoading: false,
       isReloading: false,
@@ -151,88 +151,97 @@ class Profile extends React.Component {
   }
 
   getCharacterData(lodestoneId) {
-    fetch(`https://xivapi.com/character/${lodestoneId}?data=CJ`).then(response => response.json()).then(jsonData => {this.setCharacterData(jsonData);});
+    fetch(`https://xivapi.com/character/${lodestoneId}?data=CJ`)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        this.setCharacterData(jsonData);
+      });
   }
 
   startReloading() {
-    this.setState({isReloading: true});
+    this.setState({ isReloading: true });
   }
 
   render() {
-    if(this.state.isFirstLoading) {
-      return(
-        <div>ロード中...</div>
-      );
+    if (this.state.isFirstLoading) {
+      return <div>ロード中...</div>;
     }
     return (
       <div>
-        <SearchBox lodestoneId={this.state.lodestoneId} handleChange={this.handleChange} getCharacterData={this.getCharacterData} startReloading={this.startReloading}/>
-        {this.state.isReloading ? <div>リロード中...</div>:
+        <SearchBox
+          lodestoneId={this.state.lodestoneId}
+          handleChange={this.handleChange}
+          getCharacterData={this.getCharacterData}
+          startReloading={this.startReloading}
+        />
+        {this.state.isReloading ? (
+          <div>リロード中...</div>
+        ) : (
           <>
             <div>{this.state.characterData.name}</div>
             <div>
-              {this.state.characterData.charaImgSrc ? 
-              <img className='profileImage'　src={this.state.characterData.charaImgSrc} alt='プロフィール画像' />: 
-              <span>ここに画像が出ます</span>}
+              {this.state.characterData.charaImgSrc ? (
+                <img
+                  className="profileImage"
+                  src={this.state.characterData.charaImgSrc}
+                  alt="プロフィール画像"
+                />
+              ) : (
+                <span>ここに画像が出ます</span>
+              )}
             </div>
-            <div className='job'>
+            <div className="job">
               <p>ジョブレベル</p>
               <JobList job={this.state.characterData.job[29]} />
             </div>
           </>
-        }
+        )}
       </div>
     );
   }
 }
 
-
-
 function JobList(props) {
   const th = props.job.map((job, i) => {
-    if(i <= 6) {
+    if (i <= 6) {
       return (
-      <li key={job.JobID}>
-        <img src={job.img} />
-        <div>{job.Level}</div>
-      </li>
-      );
-    }
-  });
-  const dps = props.job.map((job, i) => {
-    if(i < 18) {
-      if(i > 6){
-        return (
         <li key={job.JobID}>
           <img src={job.img} />
           <div>{job.Level}</div>
         </li>
+      );
+    }
+  });
+  const dps = props.job.map((job, i) => {
+    if (i < 18) {
+      if (i > 6) {
+        return (
+          <li key={job.JobID}>
+            <img src={job.img} />
+            <div>{job.Level}</div>
+          </li>
         );
       }
     }
   });
   const gc = props.job.map((job, i) => {
-    if(i >= 18) {
+    if (i >= 18) {
       return (
-      <li key={job.JobID}>
-        <img src={job.img} />
-        <div>{job.Level}</div>
-      </li>
+        <li key={job.JobID}>
+          <img src={job.img} />
+          <div>{job.Level}</div>
+        </li>
       );
     }
-  }); 
-  
+  });
+
   return (
     <div>
-      <ul className='job-list'>{th}</ul>
-      <ul className='job-list'>{dps}</ul>
-      <ul className='job-list'>{gc}</ul>
+      <ul className="job-list">{th}</ul>
+      <ul className="job-list">{dps}</ul>
+      <ul className="job-list">{gc}</ul>
     </div>
   );
 }
 
-
-ReactDOM.render(
-  <Profile />,
-  document.getElementById('root')
-);
+ReactDOM.render(<Profile />, document.getElementById('root'));
