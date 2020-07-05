@@ -43,6 +43,18 @@ import arc from '../../JobIcons/arc.png';
 import thm from '../../JobIcons/thm.png';
 import acn from '../../JobIcons/acn.png';
 
+const CLASS_TABLE = [
+  { className: 'gla', classID: 1, img: gla },
+  { className: 'mrd', classID: 3, img: mrd },
+  { className: 'cnj', classID: 6, img: cnj },
+  { className: 'pgl', classID: 2, img: pgl },
+  { className: 'lnc', classID: 4, img: lnc },
+  { className: 'rog', classID: 29, img: rog },
+  { className: 'arc', classID: 5, img: arc },
+  { className: 'thm', classID: 7, img: thm },
+  { className: 'acn', classID: 26, img: acn },
+];
+
 export class Profile extends React.Component {
   constructor() {
     super();
@@ -83,17 +95,6 @@ export class Profile extends React.Component {
           { jobName: 'fsh', JobID: 18, Level: '-', img: fsh },
         ],
       },
-      class: [
-        { className: 'gla', classID: 1, img: gla },
-        { className: 'mrd', classID: 3, img: mrd },
-        { className: 'cnj', classID: 6, img: cnj },
-        { className: 'pgl', classID: 2, img: pgl },
-        { className: 'lnc', classID: 4, img: lnc },
-        { className: 'rog', classID: 29, img: rog },
-        { className: 'arc', classID: 5, img: arc },
-        { className: 'thm', classID: 7, img: thm },
-        { className: 'acn', classID: 26, img: acn },
-      ],
       isFirstLoading: true,
       isReloading: false,
     };
@@ -115,7 +116,6 @@ export class Profile extends React.Component {
   setCharacterData(data) {
     const ClassJobs = data.Character.ClassJobs;
     const currentJobs = this.state.characterData.job.slice(0, 29);
-    const currentClass = this.state.class;
 
     // Levelだけを更新した新しいJobデータ
     let nextJob = currentJobs.map((currentJob) => {
@@ -127,7 +127,7 @@ export class Profile extends React.Component {
       const unID = targetJob.UnlockedState.ID;
       let imgSrc = currentJob.img;
       if (unID !== null && (unID < 8 || unID === 29 || unID === 26)) {
-        const targetClass = currentClass.find((classes) => {
+        const targetClass = CLASS_TABLE.find((classes) => {
           return classes.classID === unID;
         });
         imgSrc = targetClass.img;
