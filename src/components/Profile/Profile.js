@@ -2,6 +2,7 @@ import React from 'react';
 import './Profile.css';
 import SearchBox from '../SearchBox';
 import JobList from '../JobList';
+import { setCharacterImageSrc } from '../../redux/character/characterAction';
 
 import pld from '../../JobIcons/pld.png';
 import war from '../../JobIcons/war.png';
@@ -42,6 +43,7 @@ import rog from '../../JobIcons/rog.png';
 import arc from '../../JobIcons/arc.png';
 import thm from '../../JobIcons/thm.png';
 import acn from '../../JobIcons/acn.png';
+import { connect } from 'react-redux';
 
 const CLASS_TABLE = [
   { className: 'gla', classID: 1, img: gla },
@@ -62,7 +64,6 @@ export class Profile extends React.Component {
       lodestoneId: '22657106', // 22728375
       characterData: {
         name: 'キャラクター名',
-        charaImgSrc: '',
         job: [
           { jobName: 'pld', JobID: 19, Level: '-', img: pld },
           { jobName: 'war', JobID: 21, Level: '-', img: war },
@@ -142,7 +143,6 @@ export class Profile extends React.Component {
     this.setState({
       characterData: {
         name: data.Character.Name,
-        charaImgSrc: data.Character.Portrait,
         job: currentJobs.concat([nextJob]),
       },
       isFirstLoading: false,
@@ -155,6 +155,7 @@ export class Profile extends React.Component {
       .then((response) => response.json())
       .then((jsonData) => {
         this.setCharacterData(jsonData);
+        this.props.dispatch(setCharacterImageSrc(jsonData.Character.Portrait));
       });
   }
 
@@ -180,10 +181,10 @@ export class Profile extends React.Component {
           <>
             <div>{this.state.characterData.name}</div>
             <div>
-              {this.state.characterData.charaImgSrc ? (
+              {this.props.charaImgSrc ? (
                 <img
                   className="profileImage"
-                  src={this.state.characterData.charaImgSrc}
+                  src={this.props.charaImgSrc}
                   alt="プロフィール画像"
                 />
               ) : (

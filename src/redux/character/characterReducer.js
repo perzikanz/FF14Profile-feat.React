@@ -1,4 +1,4 @@
-import { SET_CHARACTER } from './characterAction';
+import { SET_CHARACTER, SET_CHARACTER_IMAGE_SRC } from './characterAction';
 
 const initialState = {
   name: 'キャラクター名',
@@ -98,6 +98,8 @@ export default function character(state = initialState, action) {
   switch (action.type) {
     case SET_CHARACTER:
       return action.payload;
+    case SET_CHARACTER_IMAGE_SRC:
+      return { ...state, charaImgSrc: action.payload.imageSrc };
     default:
       return state;
   }
