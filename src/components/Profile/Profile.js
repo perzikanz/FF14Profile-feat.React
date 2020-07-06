@@ -57,6 +57,38 @@ const CLASS_TABLE = [
   { className: 'acn', classID: 26, img: acn },
 ];
 
+const JOB_TABLE = [
+  { jobName: 'pld', JobID: 19, img: pld },
+  { jobName: 'war', JobID: 21, img: war },
+  { jobName: 'drk', JobID: 32, img: drk },
+  { jobName: 'gnb', JobID: 37, img: gnb },
+  { jobName: 'whm', JobID: 24, img: whm },
+  { jobName: 'sch', JobID: 28, img: sch },
+  { jobName: 'ast', JobID: 33, img: ast },
+  { jobName: 'mnk', JobID: 20, img: mnk },
+  { jobName: 'drg', JobID: 22, img: drg },
+  { jobName: 'nin', JobID: 30, img: nin },
+  { jobName: 'sam', JobID: 34, img: sam },
+  { jobName: 'brd', JobID: 23, img: brd },
+  { jobName: 'mcn', JobID: 31, img: mcn },
+  { jobName: 'dnc', JobID: 38, img: dnc },
+  { jobName: 'blm', JobID: 25, img: blm },
+  { jobName: 'smn', JobID: 27, img: smn },
+  { jobName: 'rdm', JobID: 35, img: rdm },
+  { jobName: 'blu', JobID: 36, img: blu },
+  { jobName: 'crp', JobID: 8, img: crp },
+  { jobName: 'bsm', JobID: 9, img: bsm },
+  { jobName: 'arm', JobID: 10, img: arm },
+  { jobName: 'gsm', JobID: 11, img: gsm },
+  { jobName: 'ltw', JobID: 12, img: ltw },
+  { jobName: 'wvr', JobID: 13, img: wvr },
+  { jobName: 'alc', JobID: 14, img: alc },
+  { jobName: 'cul', JobID: 15, img: cul },
+  { jobName: 'min', JobID: 16, img: min },
+  { jobName: 'btn', JobID: 17, img: btn },
+  { jobName: 'fsh', JobID: 18, img: fsh },
+];
+
 export class Profile extends React.Component {
   constructor() {
     super();
@@ -96,7 +128,6 @@ export class Profile extends React.Component {
           { jobName: 'fsh', JobID: 18, Level: '-', img: fsh },
         ],
       },
-      isFirstLoading: true,
       isReloading: false,
     };
 
@@ -106,17 +137,13 @@ export class Profile extends React.Component {
     this.startReloading = this.startReloading.bind(this);
   }
 
-  componentDidMount() {
-    this.getCharacterData(this.state.lodestoneId);
-  }
-
   handleChange(event) {
     this.setState({ lodestoneId: event.target.value });
   }
 
   setCharacterData(data) {
     const ClassJobs = data.Character.ClassJobs;
-    const currentJobs = this.state.characterData.job.slice(0, 29);
+    const currentJobs = this.state.characterData.job;
 
     // Levelだけを更新した新しいJobデータ
     let nextJob = currentJobs.map((currentJob) => {
@@ -126,12 +153,19 @@ export class Profile extends React.Component {
         return fetchedJob.JobID === targetJobID;
       });
       const unID = targetJob.UnlockedState.ID;
-      let imgSrc = currentJob.img;
+      let imgSrc;
       if (unID !== null && (unID < 8 || unID === 29 || unID === 26)) {
-        const targetClass = CLASS_TABLE.find((classes) => {
-          return classes.classID === unID;
+        const targetClass = CLASS_TABLE.find((classe) => {
+          return classe.classID === unID;
         });
         imgSrc = targetClass.img;
+      } else if (unID === null) {
+        imgSrc = blu;
+      } else {
+        const targetJob = JOB_TABLE.find((job) => {
+          return job.JobID === unID;
+        });
+        imgSrc = targetJob.img;
       }
       return {
         JobID: currentJob.JobID,
@@ -143,9 +177,8 @@ export class Profile extends React.Component {
     this.setState({
       characterData: {
         name: data.Character.Name,
-        job: currentJobs.concat([nextJob]),
+        job: nextJob,
       },
-      isFirstLoading: false,
       isReloading: false,
     });
   }
@@ -164,9 +197,6 @@ export class Profile extends React.Component {
   }
 
   render() {
-    if (this.state.isFirstLoading) {
-      return <div>ロード中...</div>;
-    }
     return (
       <div>
         <SearchBox
@@ -193,7 +223,7 @@ export class Profile extends React.Component {
             </div>
             <div className="job">
               <p>ジョブレベル</p>
-              <JobList job={this.state.characterData.job[29]} />
+              <JobList job={this.state.characterData.job} />
             </div>
           </>
         )}
