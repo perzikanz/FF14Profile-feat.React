@@ -3,8 +3,8 @@ import { Profile } from './Profile';
 
 const mapStateToProps = (state, ownProps) => {
   const { characterState } = state;
-  const { charaImgSrc, name } = characterState;
-  return { charaImgSrc, name };
+  const { charaImgSrc, name, isLoading } = characterState;
+  return { charaImgSrc, name, isLoading };
 };
 
 const connectedProfile = connect(mapStateToProps)(Profile);
