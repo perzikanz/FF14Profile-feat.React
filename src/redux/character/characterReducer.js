@@ -1,97 +1,15 @@
-import { SET_CHARACTER, SET_CHARACTER_IMAGE_SRC } from './characterAction';
+import {
+  SET_CHARACTER,
+  SET_CHARACTER_IMAGE_SRC,
+  FETCH_CHARACTER_REQUEST,
+  FETCH_CHARACTER_SUCCESS,
+} from './characterAction';
+import { JOB_TABLE } from '../../constant/job';
 
 const initialState = {
   name: 'キャラクター名',
   charaImgSrc: '',
-  job: {
-    pld: {
-      level: '-',
-    },
-    war: {
-      level: '-',
-    },
-    drk: {
-      level: '-',
-    },
-    gnb: {
-      level: '-',
-    },
-    whm: {
-      level: '-',
-    },
-    sch: {
-      level: '-',
-    },
-    ast: {
-      level: '-',
-    },
-    mnk: {
-      level: '-',
-    },
-    drg: {
-      level: '-',
-    },
-    nin: {
-      level: '-',
-    },
-    sam: {
-      level: '-',
-    },
-    brd: {
-      level: '-',
-    },
-    mcn: {
-      level: '-',
-    },
-    dnc: {
-      level: '-',
-    },
-    blm: {
-      level: '-',
-    },
-    smn: {
-      level: '-',
-    },
-    rdm: {
-      level: '-',
-    },
-    blu: {
-      level: '-',
-    },
-    crp: {
-      level: '-',
-    },
-    bsm: {
-      level: '-',
-    },
-    arm: {
-      level: '-',
-    },
-    gsm: {
-      level: '-',
-    },
-    ltw: {
-      level: '-',
-    },
-    wvr: {
-      level: '-',
-    },
-    alc: {
-      level: '-',
-    },
-    cul: {
-      level: '-',
-    },
-    min: {
-      level: '-',
-    },
-    btn: {
-      level: '-',
-    },
-    fsh: {
-      level: '-',
-    },
-  },
+  classJobs: [],
 };
 
 export default function character(state = initialState, action) {
@@ -100,6 +18,28 @@ export default function character(state = initialState, action) {
       return action.payload;
     case SET_CHARACTER_IMAGE_SRC:
       return { ...state, charaImgSrc: action.payload.imageSrc };
+
+    case FETCH_CHARACTER_REQUEST:
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case FETCH_CHARACTER_SUCCESS:
+      const { data } = action.payload;
+      //-- fetchの結果から必要なデータを取り出す
+      const name = data.Character.Name;
+      const charaImgSrc = data.Character.Portrait;
+
+      const classJobs = data.Character.ClassJobs;
+
+      const job = { ...state.job };
+      return {
+        ...state,
+        name,
+        charaImgSrc,
+        classJobs,
+        isLoading: false,
+      };
     default:
       return state;
   }
