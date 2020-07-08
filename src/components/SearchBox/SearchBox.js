@@ -1,39 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
 import './SearchBox.css';
+import { Button } from '../Button';
 
-function Button(props) {
-  return(
-    <button onClick={() => {
-      props.startReloading();
-      props.getCharacterData(props.lodestoneId);
-      }}>
-      押してね
-    </button>
-  );
-}
+const ConnectedButton = connect()(Button);
 
-export class SearchBox extends Component {
+export class SearchBox extends React.Component {
   constructor() {
     super();
   }
-
 
   render() {
     return (
       <div>
         <label>
           Lodestone ID：
-          <input type="text"
+          <input
+            type="text"
             value={this.props.lodestoneId}
-            onChange={this.props.handleChange} 
+            onChange={this.props.handleChange}
           />
         </label>
-        <Button lodestoneId={this.props.lodestoneId} getCharacterData={this.props.getCharacterData} startReloading={this.props.startReloading}/>
+        <ConnectedButton lodestoneId={this.props.lodestoneId} />
       </div>
     );
   }
 }
-
-
-
-// export default SearchBox;
