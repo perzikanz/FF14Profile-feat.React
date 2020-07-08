@@ -25,8 +25,6 @@ export class Profile extends React.Component {
           <SearchBox
             lodestoneId={this.state.lodestoneId}
             handleChange={this.handleChange}
-            getCharacterData={this.getCharacterData}
-            startReloading={this.startReloading}
           />
           {this.props.isLoading ? (
             <div>ロード中...</div>

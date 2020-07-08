@@ -1,5 +1,4 @@
 import {
-  SET_CHARACTER,
   FETCH_CHARACTER_REQUEST,
   FETCH_CHARACTER_SUCCESS,
 } from './characterAction';
@@ -12,9 +11,6 @@ const initialState = {
 
 export default function character(state = initialState, action) {
   switch (action.type) {
-    case SET_CHARACTER:
-      return action.payload;
-
     case FETCH_CHARACTER_REQUEST:
       return {
         ...state,
