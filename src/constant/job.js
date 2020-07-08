@@ -28,121 +28,208 @@ import min from '../JobIcons/min.png';
 import btn from '../JobIcons/btn.png';
 import fsh from '../JobIcons/fsh.png';
 
-export const JOB_TABLE = {
-  19: {
+import gla from '../JobIcons/gla.png';
+import mrd from '../JobIcons/mrd.png';
+import cnj from '../JobIcons/cnj.png';
+import pgl from '../JobIcons/pgl.png';
+import lnc from '../JobIcons/lnc.png';
+import rog from '../JobIcons/rog.png';
+import arc from '../JobIcons/arc.png';
+import thm from '../JobIcons/thm.png';
+import acn from '../JobIcons/acn.png';
+
+export const JOB_TABLE = [
+  {
     jobName: 'pld',
+    id: '19',
     img: pld,
   },
-  21: {
+  {
     jobName: 'war',
+    id: '21',
     img: war,
   },
-  32: {
+  {
     jobName: 'drk',
+    id: '32',
     img: drk,
   },
-  37: {
+  {
     jobName: 'gnb',
+    id: '37',
     img: gnb,
   },
-  24: {
+  {
     jobName: 'whm',
+    id: '24',
     img: whm,
   },
-  28: {
+  {
     jobName: 'sch',
+    id: '28',
     img: sch,
   },
-  33: {
+  {
     jobName: 'ast',
+    id: '33',
     img: ast,
   },
-  20: {
+  {
     jobName: 'mnk',
+    id: '20',
     img: mnk,
   },
-  22: {
+  {
     jobName: 'drg',
+    id: '22',
     img: drg,
   },
-  30: {
+  {
     jobName: 'nin',
+    id: '30',
     img: nin,
   },
-  34: {
+  {
     jobName: 'sam',
+    id: '34',
     img: sam,
   },
-  23: {
+  {
     jobName: 'brd',
+    id: '23',
     img: brd,
   },
-  31: {
+  {
     jobName: 'mcn',
+    id: '31',
     img: mcn,
   },
-  38: {
+  {
     jobName: 'dnc',
+    id: '38',
     img: dnc,
   },
-  25: {
+  {
     jobName: 'blm',
+    id: '25',
     img: blm,
   },
-  27: {
+  {
     jobName: 'smn',
+    id: '27',
     img: smn,
   },
-  35: {
+  {
     jobName: 'rdm',
+    id: '35',
     img: rdm,
   },
-  36: {
+  {
     jobName: 'blu',
+    id: '36',
     img: blu,
   },
-  8: {
+  {
     jobName: 'crp',
+    id: '8',
     img: crp,
   },
-  9: {
+  {
     jobName: 'bsm',
+    id: '9',
     img: bsm,
   },
-  10: {
+  {
     jobName: 'arm',
+    id: '10',
     img: arm,
   },
-  11: {
+  {
     jobName: 'gsm',
+    id: '11',
     img: gsm,
   },
-  12: {
+  {
     jobName: 'ltw',
+    id: '12',
     img: ltw,
   },
-  13: {
+  {
     jobName: 'wvr',
+    id: '13',
     img: wvr,
   },
-  14: {
+  {
     jobName: 'alc',
+    id: '14',
     img: alc,
   },
-  15: {
+  {
     jobName: 'cul',
+    id: '15',
     img: cul,
   },
-  16: {
+  {
     jobName: 'min',
+    id: '16',
     img: min,
   },
-  17: {
+  {
     jobName: 'btn',
+    id: '17',
     img: btn,
   },
-  18: {
+  {
     jobName: 'fsh',
+    id: '18',
     img: fsh,
   },
-};
+];
+
+export const CLASS_TABLE = [
+  {
+    className: 'gla',
+    id: '1',
+    img: gla,
+  },
+  {
+    className: 'mrd',
+    id: '3',
+    img: mrd,
+  },
+  {
+    className: 'cnj',
+    id: '6',
+    img: cnj,
+  },
+  {
+    className: 'pgl',
+    id: '2',
+    img: pgl,
+  },
+  {
+    className: 'lnc',
+    id: '4',
+    img: lnc,
+  },
+  {
+    className: 'rog',
+    id: '29',
+    img: rog,
+  },
+  {
+    className: 'arc',
+    id: '5',
+    img: arc,
+  },
+  {
+    className: 'thm',
+    id: '7',
+    img: thm,
+  },
+  {
+    className: 'acn',
+    id: '26',
+    img: acn,
+  },
+];

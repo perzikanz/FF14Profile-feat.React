@@ -29,10 +29,7 @@ export default function character(state = initialState, action) {
       //-- fetchの結果から必要なデータを取り出す
       const name = data.Character.Name;
       const charaImgSrc = data.Character.Portrait;
-
       const classJobs = data.Character.ClassJobs;
-
-      const job = { ...state.job };
       return {
         ...state,
         name,
