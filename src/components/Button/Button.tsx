@@ -1,7 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import { fetchProfileData } from '../../redux/character/characterAction';
+import { Dispatch } from 'redux';
 
-export function Button(props) {
+type Props = {
+  lodestoneId: string;
+  dispatch: Dispatch;
+};
+
+export const Button: React.FC<Props> = (props) => {
   const { lodestoneId, dispatch } = props;
   return (
     <button
@@ -12,4 +18,4 @@ export function Button(props) {
       プロフィールを表示
     </button>
   );
-}
+};

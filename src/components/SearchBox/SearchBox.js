@@ -1,9 +1,6 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import './SearchBox.css';
-import { Button } from '../Button';
-
-const ConnectedButton = connect()(Button);
+import Button from '../Button';
 
 export class SearchBox extends React.Component {
   constructor() {
@@ -21,7 +18,7 @@ export class SearchBox extends React.Component {
             onChange={this.props.handleChange}
           />
         </label>
-        <ConnectedButton lodestoneId={this.props.lodestoneId} />
+        <Button lodestoneId={this.props.lodestoneId} />
       </div>
     );
   }
